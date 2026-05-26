@@ -157,10 +157,10 @@
             opacity: 0;
         }
 
-        /* ================= أزرار التحميل (احترافية 3D) ================= */
+        /* ================= أزرار التحميل (تصميم عالمي حديث) ================= */
         .download-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
             animation: fadeUp 0.8s ease 0.9s forwards;
             opacity: 0;
@@ -170,85 +170,86 @@
             position: relative;
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 14px 28px;
-            border-radius: 20px; /* تدوير قوي للازرار */
+            gap: 14px;
+            padding: 12px 24px;
+            border-radius: 16px; /* تدوير حديث وناعم */
+            background: rgba(255, 255, 255, 0.03); /* زجاج شفاف جداً */
+            border: 1px solid rgba(255, 255, 255, 0.08); /* إطار رقيق */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 800;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             cursor: pointer;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* لمعة متحركة مستمرة فوق الزر */
-        .btn::after {
+        /* لمعة داخلية ناعمة جداً تظهر عند المرور */
+        .btn::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-            transform: skewX(-25deg);
-            animation: buttonShine 4s infinite; /* لمعة مستمرة كل 4 ثواني */
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .btn:hover {
-            transform: translateY(-5px) scale(1.03);
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .btn:hover::before {
+            opacity: 1;
         }
 
         .btn:active {
-            transform: translateY(3px) scale(0.95); /* تأثير الضغطة */
+            transform: translateY(1px);
         }
-
-        /* 1. زر الويندوز (3D أزرق) */
-        .btn-pc {
-            background: linear-gradient(135deg, #0078D4 0%, #00bcff 100%);
-            box-shadow: 0 10px 25px -5px rgba(0, 120, 212, 0.6), 
-                        inset 0 2px 2px rgba(255, 255, 255, 0.4), /* إضاءة علوية */
-                        inset 0 -3px 5px rgba(0, 0, 0, 0.3); /* ظل سفلي */
-        }
-        .btn-pc:hover { box-shadow: 0 15px 35px -5px rgba(0, 120, 212, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.3); }
-
-        /* 2. زر الآيفون (3D أسود فاخر) */
-        .btn-ios {
-            background: linear-gradient(135deg, #1c1c1e 0%, #3a3a3c 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 
-                        inset 0 2px 2px rgba(255, 255, 255, 0.15), 
-                        inset 0 -3px 5px rgba(0, 0, 0, 0.6);
-        }
-        .btn-ios:hover { box-shadow: 0 15px 35px -5px rgba(255, 255, 255, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.2), inset 0 -3px 5px rgba(0, 0, 0, 0.6); }
-
-        /* 3. زر الأندرويد (3D أخضر جوجل) */
-        .btn-android {
-            background: linear-gradient(135deg, #02875a 0%, #0eb274 100%);
-            box-shadow: 0 10px 25px -5px rgba(14, 178, 116, 0.6), 
-                        inset 0 2px 2px rgba(255, 255, 255, 0.4), 
-                        inset 0 -3px 5px rgba(0, 0, 0, 0.3);
-        }
-        .btn-android:hover { box-shadow: 0 15px 35px -5px rgba(14, 178, 116, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.3); }
 
         .btn i {
-            font-size: 2.2rem;
-            color: #ffffff;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* ظل للأيقونة */
+            font-size: 1.8rem;
+            z-index: 1;
+            transition: all 0.4s ease;
         }
+
+        /* ألوان الأيقونات والحدود حسب المنصة */
+        .btn-pc i { color: #60a5fa; /* أزرق ويندوز ناعم */ }
+        .btn-pc:hover { border-color: rgba(96, 165, 250, 0.4); box-shadow: 0 10px 30px -10px rgba(96, 165, 250, 0.15); }
+
+        .btn-ios i { color: #f8fafc; /* أبيض آبل */ }
+        .btn-ios:hover { border-color: rgba(248, 250, 252, 0.4); box-shadow: 0 10px 30px -10px rgba(248, 250, 252, 0.15); }
+
+        .btn-android i { color: #34d399; /* أخضر أندرويد ناعم */ }
+        .btn-android:hover { border-color: rgba(52, 211, 153, 0.4); box-shadow: 0 10px 30px -10px rgba(52, 211, 153, 0.15); }
 
         .btn-text {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* ظل للنص */
+            z-index: 1;
         }
 
         .btn-text span:first-child {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+            transition: color 0.4s ease;
+        }
+
+        .btn-text span:last-child {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: 0.2px;
+        }
+
+        .btn:hover .btn-text span:first-child {
+            color: #cbd5e1; /* تفتيح النص الصغير عند المرور */
         }
 
         /* ================= صورة التطبيق ================= */
@@ -284,7 +285,7 @@
             z-index: 2;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
                         0 0 30px rgba(255, 255, 255, 0.05) inset;
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
             transition: transform 0.5s ease;
         }
@@ -331,12 +332,6 @@
             to { background-position: 200% center; }
         }
 
-        @keyframes buttonShine {
-            0% { left: -150%; }
-            20% { left: 150%; } /* تلمع بسرعة */
-            100% { left: 150%; } /* تنتظر 4 ثواني */
-        }
-
         /* ================= تخصيص الموبايل ================= */
         @media (max-width: 992px) {
             header {
@@ -369,14 +364,14 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                gap: 1.2rem; /* مسافة أكبر بين الأزرار بالموبايل */
+                gap: 1rem;
             }
             
             .btn {
                 width: 100%;
                 max-width: 320px; 
                 justify-content: center; 
-                padding: 18px 20px; /* زيادة ارتفاع الزر بالموبايل */
+                padding: 14px 20px;
             }
             
             .hero-image {
@@ -463,4 +458,4 @@
     </main>
 
 </body>
-</html> 
+</html>
