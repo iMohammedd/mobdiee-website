@@ -17,8 +17,6 @@
             --secondary-glow: rgba(139, 92, 246, 0.5);
             --bg-dark: #070913;
             --text-light: #f8fafc;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
         /* ================= الإعدادات العامة ================= */
@@ -34,10 +32,10 @@
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
-            -webkit-tap-highlight-color: transparent; /* إزالة لون الضغطة الافتراضي بالموبايل */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* ================= الخلفية الديناميكية المتحركة ================= */
+        /* ================= الخلفية الديناميكية ================= */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -55,7 +53,6 @@
             filter: blur(80px);
             opacity: 0.6;
             animation: floatOrb 20s infinite alternate ease-in-out;
-            will-change: transform;
         }
 
         .orb-1 {
@@ -86,14 +83,13 @@
             animation-duration: 20s;
         }
 
-        /* ================= شريط التنقل (Header) ================= */
+        /* ================= الهيدر والقسم الرئيسي ================= */
         header {
             padding: 2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             animation: fadeDown 1s ease forwards;
-            opacity: 0;
         }
 
         .logo {
@@ -107,7 +103,6 @@
             gap: 10px;
         }
 
-        /* ================= القسم الرئيسي (Hero Section) ================= */
         .hero {
             display: flex;
             align-items: center;
@@ -119,22 +114,20 @@
             z-index: 1;
         }
 
-        .hero-content {
-            flex: 1;
-        }
+        .hero-content { flex: 1; }
 
         .hero-tagline {
             display: inline-block;
             padding: 8px 16px;
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(59, 130, 246, 0.15);
             color: #60a5fa;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            opacity: 0;
+            border: 1px solid rgba(59, 130, 246, 0.3);
             animation: fadeUp 0.8s ease 0.3s forwards;
+            opacity: 0;
         }
 
         .hero-title {
@@ -142,8 +135,8 @@
             font-weight: 900;
             line-height: 1.2;
             margin-bottom: 1.5rem;
-            opacity: 0;
             animation: fadeUp 0.8s ease 0.5s forwards;
+            opacity: 0;
         }
 
         .hero-title span {
@@ -160,91 +153,105 @@
             line-height: 1.8;
             margin-bottom: 2.5rem;
             max-width: 600px;
-            opacity: 0;
             animation: fadeUp 0.8s ease 0.7s forwards;
+            opacity: 0;
         }
 
-        /* ================= أزرار التحميل ================= */
+        /* ================= أزرار التحميل (احترافية 3D) ================= */
         .download-buttons {
             display: flex;
-            gap: 1.2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            opacity: 0;
             animation: fadeUp 0.8s ease 0.9s forwards;
+            opacity: 0;
         }
 
         .btn {
             position: relative;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             padding: 14px 28px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: 20px; /* تدوير قوي للازرار */
             color: white;
             text-decoration: none;
-            font-size: 1rem;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 1.1rem;
+            font-weight: 800;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .btn::before {
+        /* لمعة متحركة مستمرة فوق الزر */
+        .btn::after {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: -150%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
             transform: skewX(-25deg);
-            transition: 0.5s;
+            animation: buttonShine 4s infinite; /* لمعة مستمرة كل 4 ثواني */
         }
 
         .btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px) scale(1.03);
         }
 
         .btn:active {
-            transform: translateY(2px) scale(0.98); /* تأثير الضغط للموبايل */
+            transform: translateY(3px) scale(0.95); /* تأثير الضغطة */
         }
 
-        .btn:hover::before {
-            left: 150%;
+        /* 1. زر الويندوز (3D أزرق) */
+        .btn-pc {
+            background: linear-gradient(135deg, #0078D4 0%, #00bcff 100%);
+            box-shadow: 0 10px 25px -5px rgba(0, 120, 212, 0.6), 
+                        inset 0 2px 2px rgba(255, 255, 255, 0.4), /* إضاءة علوية */
+                        inset 0 -3px 5px rgba(0, 0, 0, 0.3); /* ظل سفلي */
         }
+        .btn-pc:hover { box-shadow: 0 15px 35px -5px rgba(0, 120, 212, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.3); }
 
-        .btn-pc:hover { box-shadow: 0 10px 40px rgba(0, 164, 239, 0.3); }
-        .btn-pc:hover i { color: #00a4ef; } 
+        /* 2. زر الآيفون (3D أسود فاخر) */
+        .btn-ios {
+            background: linear-gradient(135deg, #1c1c1e 0%, #3a3a3c 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 
+                        inset 0 2px 2px rgba(255, 255, 255, 0.15), 
+                        inset 0 -3px 5px rgba(0, 0, 0, 0.6);
+        }
+        .btn-ios:hover { box-shadow: 0 15px 35px -5px rgba(255, 255, 255, 0.15), inset 0 2px 2px rgba(255, 255, 255, 0.2), inset 0 -3px 5px rgba(0, 0, 0, 0.6); }
 
-        .btn-ios:hover { box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2); }
-        .btn-ios:hover i { color: #ffffff; }
-
-        .btn-android:hover { box-shadow: 0 10px 40px rgba(61, 220, 132, 0.3); }
-        .btn-android:hover i { color: #3ddc84; } 
+        /* 3. زر الأندرويد (3D أخضر جوجل) */
+        .btn-android {
+            background: linear-gradient(135deg, #02875a 0%, #0eb274 100%);
+            box-shadow: 0 10px 25px -5px rgba(14, 178, 116, 0.6), 
+                        inset 0 2px 2px rgba(255, 255, 255, 0.4), 
+                        inset 0 -3px 5px rgba(0, 0, 0, 0.3);
+        }
+        .btn-android:hover { box-shadow: 0 15px 35px -5px rgba(14, 178, 116, 0.8), inset 0 2px 2px rgba(255, 255, 255, 0.5), inset 0 -3px 5px rgba(0, 0, 0, 0.3); }
 
         .btn i {
-            font-size: 1.8rem;
-            transition: color 0.3s ease;
+            font-size: 2.2rem;
+            color: #ffffff;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* ظل للأيقونة */
         }
 
         .btn-text {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* ظل للنص */
         }
 
         .btn-text span:first-child {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            font-weight: 500;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
         }
 
-        /* ================= صورة التطبيق (الجهة اليسرى) ================= */
+        /* ================= صورة التطبيق ================= */
         .hero-image {
             flex: 1;
             display: flex;
@@ -324,10 +331,16 @@
             to { background-position: 200% center; }
         }
 
-        /* ================= تخصيص احترافي للموبايل والأجهزة اللوحية ================= */
+        @keyframes buttonShine {
+            0% { left: -150%; }
+            20% { left: 150%; } /* تلمع بسرعة */
+            100% { left: 150%; } /* تنتظر 4 ثواني */
+        }
+
+        /* ================= تخصيص الموبايل ================= */
         @media (max-width: 992px) {
             header {
-                justify-content: center; /* توسيط الشعار في الموبايل */
+                justify-content: center; 
                 padding: 1.5rem 5%;
             }
             .hero {
@@ -342,7 +355,7 @@
                 padding: 6px 14px;
             }
             .hero-title {
-                font-size: 2.4rem; /* تصغير العنوان ليتناسب مع الشاشة */
+                font-size: 2.4rem; 
                 margin-bottom: 1rem;
             }
             .hero-desc {
@@ -352,24 +365,22 @@
                 line-height: 1.6;
             }
             
-            /* تحويل الأزرار لشكل عمودي (كأنها داخل تطبيق) */
             .download-buttons {
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                gap: 1rem;
+                gap: 1.2rem; /* مسافة أكبر بين الأزرار بالموبايل */
             }
             
             .btn {
                 width: 100%;
-                max-width: 320px; /* توحيد عرض الأزرار */
-                justify-content: center; /* توسيط محتوى الزر */
-                padding: 16px 20px;
+                max-width: 320px; 
+                justify-content: center; 
+                padding: 18px 20px; /* زيادة ارتفاع الزر بالموبايل */
             }
             
-            /* تعديل الصورة في الموبايل */
             .hero-image {
-                margin-top: 2rem;
+                margin-top: 2.5rem;
                 width: 100%;
             }
             
@@ -380,15 +391,14 @@
             }
             
             .hero-image img {
-                max-width: 85%; /* منع الصورة من أخذ حجم أكبر من الشاشة */
-                transform: none; /* إلغاء الميلان 3D في الموبايل ليكون أوضح */
+                max-width: 85%; 
+                transform: none; 
             }
             
             .hero-image img:hover {
                 transform: translateY(-5px);
             }
             
-            /* تصغير حجم فقاعات الخلفية لعدم إرباك الموبايل */
             .orb-1 { width: 250px; height: 250px; }
             .orb-2 { width: 300px; height: 300px; }
             .orb-3 { width: 200px; height: 200px; }
