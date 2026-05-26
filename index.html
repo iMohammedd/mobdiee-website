@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق مبدعي المستقبل | الموقع الرسمي</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= المتغيرات الأساسية ================= */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --bg-dark: #0f172a;
+            --text-light: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ================= الإعدادات العامة ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            /* خلفية متدرجة حديثة */
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15), transparent 25%);
+        }
+
+        /* ================= شريط التنقل (Header) ================= */
+        header {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(to left, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ================= القسم الرئيسي (Hero Section) ================= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+            padding: 0 5%;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            color: #60a5fa;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        /* ================= أزرار التحميل ================= */
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn i {
+            font-size: 1.5rem;
+        }
+
+        .btn-pc:hover i { color: #00a4ef; } /* لون الويندوز */
+        .btn-android:hover i { color: #3ddc84; } /* لون الأندرويد */
+        .btn-ios:hover i { color: #ffffff; } /* لون أبل */
+
+        .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .btn-text span:first-child {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* ================= صورة التطبيق (الجهة اليسرى) ================= */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            /* ظل قوي يعطي إيحاء بأن التطبيق يطفو */
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+                        0 0 80px rgba(37, 99, 235, 0.2);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* ================= الحركات (Animations) ================= */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ================= التجاوب مع شاشات الموبايل ================= */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 2rem;
+            }
+            .hero-desc {
+                margin: 0 auto 2rem;
+            }
+            .download-buttons {
+                justify-content: center;
+            }
+            .btn-text {
+                align-items: center;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-fingerprint"></i>
+            مبدعي المستقبل
+        </div>
+    </header>
+
+    <main class="hero">
+        
+        <div class="hero-content">
+            <div class="hero-tagline">الإصدار الرسمي 1.1.3 متوفر الآن</div>
+            <h1 class="hero-title">أدر شركتك بذكاء مع <br><span>النظام الأقوى</span></h1>
+            <p class="hero-desc">
+                تطبيق متكامل لإدارة الموارد البشرية، تتبع الحضور والانصراف، الأتمتة المالية للرواتب، والمزيد. صُمم خصيصاً لرفع كفاءة فريقك في بيئة عمل عصرية.
+            </p>
+
+            <div class="download-buttons">
+                <a href="#" class="btn btn-pc">
+                    <i class="fa-brands fa-windows"></i>
+                    <div class="btn-text">
+                        <span>حمل نسخة الكمبيوتر</span>
+                        <span>Windows x64</span>
+                    </div>
+                </a>
+
+                <a href="#" class="btn btn-ios">
+                    <i class="fa-brands fa-apple"></i>
+                    <div class="btn-text">
+                        <span>حمل من متجر</span>
+                        <span>App Store</span>
+                    </div>
+                </a>
+
+                <a href="#" class="btn btn-android">
+                    <i class="fa-brands fa-google-play"></i>
+                    <div class="btn-text">
+                        <span>حمل من متجر</span>
+                        <span>Google Play</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="واجهة تطبيق مبدعي المستقبل" width="400">
+        </div>
+
+    </main>
+
+</body>
+</html>
